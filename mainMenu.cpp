@@ -1,3 +1,13 @@
+/**
+ * @file mainMenu.cpp
+ * @brief Programa principal com menu interativo
+ * @author Ana Raquel
+ * @date 2026
+ *
+ * Este ficheiro contém o programa principal que oferece uma interface
+ * de menu interativo para controlar o sistema de alarme doméstico.
+ */
+
 #include <iostream>
 #include <string>
 #include <limits>
@@ -5,6 +15,9 @@
 #include "Sensor.hpp"
 #include "Simulacao.hpp"
 
+/**
+ * @brief Mostra o menu principal do sistema
+ */
 void mostrarMenu() {
     std::cout << "\n========================================" << std::endl;
     std::cout << "        MENU SISTEMA DE ALARME" << std::endl;
@@ -23,14 +36,24 @@ void mostrarMenu() {
     std::cout << " Escolha uma opcao: ";
 }
 
+/**
+ * @brief Mostra o estado atual do sistema
+ * @param comando Ponteiro para o ComandoAlarme
+ * @param simulacao Ponteiro para a Simulacao
+ */
 void mostrarEstado(ComandoAlarme* comando, Simulacao* simulacao) {
     std::cout << "\n--- ESTADO DO SISTEMA ---" << std::endl;
     std::cout << "Sistema: " << (comando->getEstado() ? "ARMADO" : "DESARMADO") << std::endl;
     std::cout << "Campainha: " << (comando->getEstadoCampainha() ? "ATIVA" : "DESATIVA") << std::endl;
     std::cout << "Tentativas: " << comando->getTentativas() << "/" << comando->getMaxTentativas() << std::endl;
     std::cout << "Mensagem: " << comando->getMensagem() << std::endl;
+    (void)simulacao;
 }
 
+/**
+ * @brief Lista todos os sensores cadastrados
+ * @param simulacao Ponteiro para a Simulacao
+ */
 void listarSensores(Simulacao* simulacao) {
     std::cout << "\n--- SENSORES ---" << std::endl;
     for (int i = 1; i <= 5; i++) {
@@ -45,6 +68,10 @@ void listarSensores(Simulacao* simulacao) {
     }
 }
 
+/**
+ * @brief Programa principal com menu interativo
+ * @return 0 se execu��o bem sucedida
+ */
 int main() {
     std::cout << "========================================" << std::endl;
     std::cout << "   SISTEMA DE ALARME DOMESTICO" << std::endl;

@@ -1,9 +1,28 @@
+/**
+ * @file main.cpp
+ * @brief Programa principal para execução de simulação via ficheiro de eventos
+ * @author Ana Raquel
+ * @date 2026
+ *
+ * Este ficheiro contém o programa principal que executa a simulação
+ * do sistema de alarme doméstico usando uma lista de eventos
+ * lida de um ficheiro de texto.
+ */
+
 #include <iostream>
 #include <string>
 #include "ComandoAlarme.hpp"
 #include "Sensor.hpp"
 #include "Simulacao.hpp"
 
+/**
+ * @brief Programa principal
+ *
+ * Cria o sistema de alarme com 5 sensores em diferentes divisões
+ * e executa a simulação processando eventos do ficheiro eventos.dados
+ *
+ * @return 0 se execu��o bem sucedida, 1 em caso de erro
+ */
 int main() {
     std::cout << "========================================" << std::endl;
     std::cout << "   SISTEMA DE ALARME DOMESTICO" << std::endl;

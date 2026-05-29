@@ -1,16 +1,41 @@
+/**
+ * @file Simulacao.cpp
+ * @brief Implementação da classe Simulacao
+ * @author Ana Raquel
+ * @date 2026
+ *
+ * Este ficheiro contém a implementação dos métodos da classe
+ * Simulacao, responsável pela gestão da fila de eventos e
+ * execução da simulação do sistema de alarme.
+ */
+
 #include "Simulacao.hpp"
 #include <iostream>
 #include <fstream>
 #include <sstream>
 
+/**
+ * Construtor que inicializa o ponteiro comandoAlarme a nullptr
+ */
 Simulacao::Simulacao() : comandoAlarme(nullptr) {}
 
+/**
+ * Destruidor (não são necessários recursos a libertar)
+ */
 Simulacao::~Simulacao() {}
 
+/**
+ * Adiciona um sensor ao vetor de sensores da simulação
+ * @param sensor Ponteiro para o sensor a adicionar
+ */
 void Simulacao::adicionarSensor(Sensor* sensor) {
     sensores.push_back(sensor);
 }
 
+/**
+ * Associa o ComandoAlarme à simulação e a todos os sensores
+ * @param comando Ponteiro para o ComandoAlarme
+ */
 void Simulacao::setComandoAlarme(ComandoAlarme* comando) {
     comandoAlarme = comando;
     for (Sensor* sensor : sensores) {
@@ -18,6 +43,12 @@ void Simulacao::setComandoAlarme(ComandoAlarme* comando) {
     }
 }
 
+/**
+ * Carrega eventos de um ficheiro de texto para a fila
+ * Cada linha deve conter um evento no formato: TIPO [param1] [param2]
+ * @param ficheiro Nome do ficheiro a carregar
+ * @return true se o ficheiro foi aberto e processado com sucesso
+ */
 bool Simulacao::carregarEventos(const std::string& ficheiro) {
     std::ifstream ficheiroEventos(ficheiro);
     if (!ficheiroEventos.is_open()) {
@@ -40,6 +71,12 @@ bool Simulacao::carregarEventos(const std::string& ficheiro) {
     return true;
 }
 
+/**
+ * Analisa uma linha do ficheiro e cria a estrutura Evento correspondente
+ * @param linha Linha a analisar
+ * @param evento Estrutura a preencher com os dados do evento
+ * @return true se a linha contém um evento válido
+ */
 bool Simulacao::parseEvento(const std::string& linha, Evento& evento) {
     std::istringstream iss(linha);
     std::string tipo;
@@ -74,6 +111,10 @@ bool Simulacao::parseEvento(const std::string& linha, Evento& evento) {
     return false;
 }
 
+/**
+ * Processa um evento individual, executando a ação correspondente
+ * @param evento Evento a processar
+ */
 void Simulacao::processarEvento(const Evento& evento) {
     std::cout << "\n--- Processando evento: " << evento.tipo;
     if (!evento.param1.empty()) std::cout << " " << evento.param1;
@@ -109,6 +150,11 @@ void Simulacao::processarEvento(const Evento& evento) {
     }
 }
 
+/**
+ * Inicia a simulação carregando eventos do ficheiro especificado
+ * @param ficheiroEventos Nome do ficheiro de eventos
+ * @return true se iniciado com sucesso
+ */
 bool Simulacao::iniciar(const std::string& ficheiroEventos) {
     std::cout << "[SIMULACAO] A iniciar simulacao..." << std::endl;
     if (!carregarEventos(ficheiroEventos)) {
@@ -118,6 +164,9 @@ bool Simulacao::iniciar(const std::string& ficheiroEventos) {
     return true;
 }
 
+/**
+ * Executa a simulação processando todos os eventos em ordem FIFO
+ */
 void Simulacao::executar() {
     std::cout << "\n========================================" << std::endl;
     std::cout << "       INICIO DA SIMULACAO" << std::endl;
@@ -134,6 +183,11 @@ void Simulacao::executar() {
     std::cout << "========================================" << std::endl;
 }
 
+/**
+ * Procura um sensor pelo seu ID
+ * @param id ID do sensor a procurar
+ * @return Ponteiro para o sensor ou nullptr se não encontrado
+ */
 Sensor* Simulacao::obtemSensor(int id) const {
     for (Sensor* sensor : sensores) {
         if (sensor->getId() == id) {
