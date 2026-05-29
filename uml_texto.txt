@@ -1,0 +1,105 @@
+=============================================================
+            DIAGRAMA UML - SISTEMA DE ALARME DOMESTICO
+=============================================================
+
+CLASSE ComandoAlarme
+--------------------
++------------------+
+|  ComandoAlarme   |
++------------------+
+| - estado : bool  |
+| - senha : string|
+| - mensagem      |
+| - estadoCampainha|
+| - tentativas:int|
+| - MAX_TENTATIVAS |
++------------------+
+| + ComandoAlarme()|
+| + armar(string) |
+| + desarmar(bool)|
+| + mudarSenha()  |
+| + processarSens. |
+| + ativarCampainha|
+| + desativarCamp. |
+| + resetTentativas|
+| + liga(string)  |
+| + desliga(string)|
+| + getEstado()   |
+| + getCampainha() |
+| + getSenha()     |
+| + getMensagem()  |
++------------------+
+
+        1..n
+         ▼
+CLASSE Sensor
+--------------------
++---------------+
+|    Sensor     |
++---------------+
+| - id : int    |
+| - divisao     |
+| - estado      |
+| - tipo        |
+| - comando*    |
++---------------+
+| + Sensor()    |
+| + setComando()|
+| + ativar()    |
+| + desativar() |
+| + notificar() |
+| + fixaEstado()|
+| + getId()     |
+| + getDivisao()|
+| + getEstado() |
+| + getTipo()   |
++---------------+
+
+CLASSE Simulacao
+--------------------
++-------------------+
+|     Simulacao     |
++-------------------+
+| - eventos: queue  |
+| - sensores: vector|
+| - comandoAlarme*  |
++-------------------+
+| + Simulacao()     |
+| + ~Simulacao()    |
+| + adicionarSens()|
+| + setComandoAlarme|
+| + iniciar()      |
+| + executar()      |
+| + obtemSensor()   |
++-------------------+
+
+
+RELAÇÕES:
+=========
+
+ComandoAlarme ──────────────► Sensor (1..n)
+    │                               ▲
+    │                               │
+    │     Simulacao                 │
+    └──────────────────────────────┘
+         (agregação de ambos)
+
+
+NOTAS:
+======
+• Composição: Simulacao contém ComandoAlarme e Sensors
+• Associação: Sensor conhece o seu ComandoAlarme (n..1)
+• Agregação: Sensores existem independentemente da simulação
+
+
+ENUMS:
+======
+
+TipoSensor
++-----------+
+| INTRUSAO  |
+| MOVIMENTO |
+| FOGO      |
+| GAS       |
+| INUNDACAO |
++-----------+

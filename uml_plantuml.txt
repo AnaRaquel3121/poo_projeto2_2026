@@ -1,0 +1,84 @@
+@startuml SistemaAlarme
+
+skinparam classAttributeIconSize 0
+
+class ComandoAlarme {
+    - estado : bool
+    - senha : string
+    - mensagem : string
+    - estadoCampainha : bool
+    - tentativas : int
+    - MAX_TENTATIVAS : const int
+    --
+    + ComandoAlarme()
+    + ComandoAlarme(senhaInicial : string)
+    + armar(senha : string) : void
+    + desarmar(senha : string) : bool
+    + mudarSenha(senhaAntiga : string, senhaNova : string) : bool
+    + processarSensor(tipo : string, divisao : string) : void
+    + ativarCampainha() : void
+    + desativarCampainha() : void
+    + resetTentativas() : void
+    + liga(senha : string) : void
+    + desliga(senha : string) : void
+    + getEstado() : bool
+    + getEstadoCampainha() : bool
+    + getSenha() : string
+    + getMensagem() : string
+    + getTentativas() : int
+    + getMaxTentativas() : int
+}
+
+class Sensor {
+    - id : int
+    - divisao : string
+    - estado : bool
+    - tipo : TipoSensor
+    - comando : ComandoAlarme*
+    --
+    + Sensor(id : int, divisao : string, tipo : TipoSensor)
+    + setComando(comando : ComandoAlarme*) : void
+    + ativar() : void
+    + desativar() : void
+    + notificar() : void
+    + fixaEstado(estado : bool) : void
+    + getId() : int
+    + getDivisao() : string
+    + getEstado() : bool
+    + getTipo() : TipoSensor
+    + getTipoString() : string
+}
+
+enum TipoSensor {
+    INTRUSAO
+    MOVIMENTO
+    FOGO
+    GAS
+    INUNDACAO
+}
+
+class Simulacao {
+    - eventos : queue<Evento>
+    - sensores : vector<Sensor*>
+    - comandoAlarme : ComandoAlarme*
+    --
+    + Simulacao()
+    + ~Simulacao()
+    + adicionarSensor(sensor : Sensor*) : void
+    + setComandoAlarme(comando : ComandoAlarme*) : void
+    + iniciar(ficheiroEventos : string) : bool
+    + executar() : void
+    + obtemSensor(id : int) : Sensor*
+}
+
+struct Evento {
+    + tipo : string
+    + param1 : string
+    + param2 : string
+}
+
+Simulacao "1" o-- "1" ComandoAlarme : contém
+Simulacao "1" o-- "1..n" Sensor : contém
+Sensor "n" --> "1" ComandoAlarme : notifica
+
+@enduml
