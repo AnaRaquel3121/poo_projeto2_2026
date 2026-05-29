@@ -2,26 +2,12 @@
 \usepackage[portuguese]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{graphicx}
-\usepackage{hyperref}
 \usepackage{geometry}
 \usepackage{fancyhdr}
-\usepackage{titlesec}
 \usepackage{listings}
 \usepackage{xcolor}
-\usepackage{amsmath}
-\usepackage{enumitem}
-\usepackage{booktabs}
-\usepackage{longtable}
 
 \geometry{margin=2.5cm}
-
-\hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,
-    urlcolor=blue,
-}
 
 \lstset{
     backgroundcolor=\color{lightgray!20},
@@ -29,33 +15,27 @@
     breaklines=true,
     frame=single,
     captionpos=b,
-    tabsize=2,
-    numbers=left
+    tabsize=2
 }
 
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{\thepage}
-\lhead{Sistema de Alarme Doméstico}
-\cfoot{Copyright © 2026 - Ana Raquel}
-
-\titleformat{\section}{\Large\bfseries}{\thesection}{1em}{}
-\titleformat{\subsection}{\large\bfseries}{\thesubsection}{1em}{}
-\titleformat{\subsubsection}{\normalsize\bfseries}{\thesubsubsection}{1em}{}
+\lhead{Sistema de Alarme Domestico}
+\cfoot{Copyright 2026 - Ana Raquel}
 
 \begin{document}
 
-% CAPA
 \begin{titlepage}
     \centering
     \vspace*{2cm}
 
-    {\LARGE\bfseries Sistema de Alarme Doméstico\par}
+    {\LARGE\bfseries Sistema de Alarme Domestico\par}
     \vspace{1cm}
-    {\Large Manual de Utilização e Documentação Técnica\par}
+    {\Large Manual de Utilizacao\par}
     \vspace{2cm}
 
-    {\large\bfseries Unidade Curricular: Programação Orientada aos Objetos\par}
+    {\large\bfseries Unidade Curricular: Programacao Orientada aos Objetos\par}
     \vspace{3cm}
 
     {\Large Ana Raquel\par}
@@ -65,413 +45,234 @@
     \vspace{3cm}
     \rule{10cm}{0.5pt}
     \vspace{0.5cm}
-    {\small Este documento acompanha o projeto de desenvolvimento de um sistema de alarme doméstico simulado em C++}
+    {\small Este documento acompanha o projeto de desenvolvimento de um sistema de alarme domestico simulado em C++}
 
     \vfill
 \end{titlepage}
-
-% PAGINA DE TITULO
-\newpage
-\begin{center}
-    \vspace*{3cm}
-    {\LARGE\bfseries Sistema de Alarme Doméstico\par}
-    \vspace{1cm}
-    {\Large Manual de Utilização\par}
-    \vfill
-\end{center}
 
 \newpage
 \tableofcontents
 \newpage
 
-% SECAO 1: INTRODUCAO
-\section{Introdução}
+\section{Introducao}
 
-O presente documento constitui o manual de utilização e documentação técnica do sistema
-de alarme doméstico desenvolvido no âmbito da unidade curricular de Programação Orientada
+O presente documento constitui o manual de utilizacao e documentacao tecnica do sistema
+de alarme domestico desenvolvido no ambito da unidade curricular de Programacao Orientada
 aos Objetos (POO). Este projeto tem como objetivo simular um sistema de alarme para um
-apartamento com cinco divisões, implementando conceitos fundamentais de POO em C++.
+apartamento com cinco divisoes.
 
 \subsection{Enquadramento do Projeto}
 
-O sistema de alarme doméstico é uma aplicação prática que permite a simulação de um
-sistema de segurança residencial. O apartamento em causa possui cinco divisões:
-Sala, Cozinha, Quarto, Casa de Banho e Entrada. Cada divisão pode ser monitorizada
-por sensores especializados que detetam diferentes tipos de eventos.
+O sistema de alarme domestico e uma aplicacao pratica que permite a simulacao de um
+sistema de seguranca residencial. O apartamento em causa possui cinco divisoes:
+Sala, Cozinha, Quarto, Casa de Banho e Entrada.
 
 \subsection{Objetivos do Sistema}
 
-O sistema de alarme foi desenvolvido para satisfazer os seguintes requisitos funcionais:
-
-\begin{itemize}[noitemsep]
-    \item \textbf{Gestão de Estados}: O sistema pode estar armado (ativo) ou desarmado (inativo)
-    \item \textbf{Autenticação por Senha}: O acesso ao sistema é protegido por uma senha de 4 dígitos
-    \item \textbf{Controlo de Campainha}: O alarme sonoro ativa automaticamente após 3 tentativas erradas
-    \item \textbf{Monitorização por Sensores}: Sensores de diferentes tipos monitorizam as divisões
-    \item \textbf{Processamento de Eventos}: Os eventos são processados sequencialmente (FIFO)
-    \item \textbf{Interface Interativa}: Menu de consola para interação direta com o utilizador
+\begin{itemize}
+    \item \textbf{Gestao de Estados}: O sistema pode estar armado (ativo) ou desarmado (inativo)
+    \item \textbf{Autenticacao por Senha}: O acesso ao sistema e protegido por uma senha de 4 digitos
+    \item \textbf{Controlo de Campainha}: O alarme sonoro ativa automaticamente apos 3 tentativas erradas
+    \item \textbf{Monitorizacao por Sensores}: Sensores de diferentes tipos monitorizam as divisoes
+    \item \textbf{Processamento de Eventos}: Os eventos sao processados sequencialmente (FIFO)
+    \item \textbf{Interface Interativa}: Menu de consola para interacao direta com o utilizador
 \end{itemize}
 
 \subsection{Tipos de Sensores Suportados}
 
-O sistema Supports cinco categorias de sensores, cada uma projetada para detetar
-um tipo específico de evento:
-
-\begin{enumerate}[noitemsep]
-    \item \textbf{INTRUSÃO}: Sensores de abertura de portas e janelas
-    \item \textbf{MOVIMENTO}: Sensores de presença interior (infravermelhos)
-    \item \textbf{FOGO}: Sensores de deteção de incêndio (fumo/temperatura)
-    \item \textbf{GÁS}: Sensores de fuga de gás natural ou GLP
-    \item \textbf{INUNDAÇÃO}: Sensores de inundação (água)
+\begin{enumerate}
+    \item \textbf{INTRUSAO}: Sensores de abertura de portas e janelas
+    \item \textbf{MOVIMENTO}: Sensores de presenca interior
+    \item \textbf{FOGO}: Sensores de deteccao de incendio
+    \item \textbf{GAS}: Sensores de fuga de gas
+    \item \textbf{INUNDACAO}: Sensores de inundacao
 \end{enumerate}
 
-\subsection{Visão Geral da Arquitetura}
-
-O sistema é composto por três classes principais que implementam toda a lógica de
-negócio e gestão do alarme:
+\subsection{Visao Geral da Arquitetura}
 
 \begin{itemize}
-    \item \textbf{ComandoAlarme}: Central de comando que gere estados, autenticação e campainha
-    \item \textbf{Sensor}: Representa cada dispositivo de monitorização nas divisões
-    \item \textbf{Simulacao}: Coordena a execução e processa eventos da fila FIFO
+    \item \textbf{ComandoAlarme}: Central de comando que gere estados, autenticacao e campainha
+    \item \textbf{Sensor}: Representa cada dispositivo de monitorizacao nas divisoes
+    \item \textbf{Simulacao}: Coordena a execucao e processa eventos da fila FIFO
 \end{itemize}
 
 \newpage
 
-% SECAO 2: ARQUITETURA DO SISTEMA
 \section{Arquitetura do Sistema}
 
 \subsection{Diagrama de Classes UML}
 
-A arquitetura do sistema segue o paradigma da orientação a objetos, organizando-se
-em três classes principais que implementam os conceitos de composição e associação.
+A arquitetura do sistema segue o paradigma da orientacao a objetos.
 
 \subsubsection{Classe ComandoAlarme}
 
-A classe \texttt{ComandoAlarme} é a central de comando do sistema, responsável
-por toda a lógica de autenticação e controlo de estados.
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{|l|l|p{7cm}|}
+\begin{tabular}{|l|p{9cm}|}
 \hline
-\textbf{Visibilidade} & \textbf{Atributo} & \textbf{Descrição} \\
+\textbf{Atributo} & \textbf{Descricao} \\
 \hline
-- & estado & Boolean: true=armado, false=desarmado \\
+estado & Boolean: true=armado, false=desarmado \\
 \hline
-- & senha & String com a senha de 4 dígitos \\
+senha & String com a senha de 4 digitos \\
 \hline
-- & mensagem & String com a última mensagem do sistema \\
+mensagem & String com a ultima mensagem do sistema \\
 \hline
-- & estadoCampainha & Boolean: true=ativa, false=desativada \\
+estadoCampainha & Boolean: true=ativa, false=desativada \\
 \hline
-- & tentativas & Contador de tentativas falhadas \\
+tentativas & Contador de tentativas falhadas \\
 \hline
-- & MAX\_TENTATIVAS & Constante = 3 \\
+MAX\_TENTATIVAS & Constante = 3 \\
 \hline
 \end{tabular}
-\caption{Atributos da classe ComandoAlarme}
-\end{table}
 
-\textbf{Métodos públicos:}
+\textbf{Metodos principais:}
 
 \begin{itemize}
-    \item \texttt{armar(senha)}: Arma o sistema após validação da senha
-    \item \texttt{desarmar(senha): bool}: Desarma o sistema, retorna sucesso
-    \item \texttt{mudarSenha(senhaAntiga, senhaNova): bool}: Altera a senha
+    \item \texttt{armar(senha)}: Arma o sistema apos validacao da senha
+    \item \texttt{desarmar(senha)}: Desarma o sistema, retorna sucesso
+    \item \texttt{mudarSenha(senhaAntiga, senhaNova)}: Altera a senha
     \item \texttt{ativarCampainha()}: Ativa o alarme sonoro
-    \item \texttt{desativarCampainha()}: Desativa o alarme sonoro
-    \item \texttt{processarSensor(tipo, divisao)}: Processa notificação de sensor
-    \item \texttt{resetTentativas()}: Reinicia o contador de tentativas
+    \item \texttt{processarSensor(tipo, divisao)}: Processa notificacao de sensor
     \item \texttt{liga(senha)}: Alias para armar
     \item \texttt{desliga(senha)}: Alias para desarmar
-    \item \texttt{getEstado(): bool}: Getter para estado
-    \item \texttt{getEstadoCampainha(): bool}: Getter para campainha
-    \item \texttt{getSenha(): string}: Getter para senha
-    \item \texttt{getMensagem(): string}: Getter para mensagem
-    \item \texttt{getTentativas(): int}: Getter para tentativas
-    \item \texttt{getMaxTentativas(): int}: Getter para MAX\_TENTATIVAS
 \end{itemize}
-
-\newpage
 
 \subsubsection{Classe Sensor}
 
-A classe \texttt{Sensor} representa cada dispositivo físico de monitorização
-instalado nas divisões do apartamento.
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{|l|l|p{7cm}|}
+\begin{tabular}{|l|p{9cm}|}
 \hline
-\textbf{Visibilidade} & \textbf{Atributo} & \textbf{Descrição} \\
+\textbf{Atributo} & \textbf{Descricao} \\
 \hline
-- & id & Identificador único do sensor \\
+id & Identificador unico do sensor \\
 \hline
-- & divisao & Nome da divisão onde está instalado \\
+divisao & Nome da divisao onde esta instalado \\
 \hline
-- & estado & Boolean: true=ativo, false=inativo \\
+estado & Boolean: true=ativo, false=inativo \\
 \hline
-- & tipo & Enum TipoSensor \\
+tipo & Enum TipoSensor \\
 \hline
-- & comando & Ponteiro para ComandoAlarme \\
+comando & Ponteiro para ComandoAlarme \\
 \hline
 \end{tabular}
-\caption{Atributos da classe Sensor}
-\end{table}
 
-\textbf{Tipos de sensores (enum TipoSensor):}
+\textbf{Tipos de sensores:}
 
 \begin{verbatim}
 enum class TipoSensor {
-    INTRUSAO,    // Deteção de abertura de portas/janelas
-    MOVIMENTO,   // Deteção de movimento interior
-    FOGO,        // Deteção de incêndio
-    GAS,         // Deteção de fuga de gás
-    INUNDACAO    // Deteção de inundação
+    INTRUSAO, MOVIMENTO, FOGO, GAS, INUNDACAO
 };
 \end{verbatim}
 
-\textbf{Métodos públicos:}
+\textbf{Metodos principais:}
 
 \begin{itemize}
     \item \texttt{Sensor(id, divisao, tipo)}: Construtor
     \item \texttt{setComando(comando)}: Associa ao ComandoAlarme
     \item \texttt{ativar()}: Ativa o sensor e notifica
     \item \texttt{desativar()}: Desativa o sensor
-    \item \texttt{notificar()}: Envia notificação ao ComandoAlarme
+    \item \texttt{notificar()}: Envia notificacao ao ComandoAlarme
     \item \texttt{fixaEstado(estado)}: Define o estado do sensor
-    \item \texttt{getId(): int}: Getter para ID
-    \item \texttt{getDivisao(): string}: Getter para divisão
-    \item \texttt{getEstado(): bool}: Getter para estado
-    \item \texttt{getTipo(): TipoSensor}: Getter para tipo
-    \item \texttt{getTipoString(): string}: Getter para tipo em string
 \end{itemize}
 
 \subsubsection{Classe Simulacao}
 
-A classe \texttt{Simulacao} é responsável por gerir a fila de eventos e coordenar
-a execução da simulação do sistema.
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{|l|l|p{7cm}|}
+\begin{tabular}{|l|p{9cm}|}
 \hline
-\textbf{Visibilidade} & \textbf{Atributo} & \textbf{Descrição} \\
+\textbf{Atributo} & \textbf{Descricao} \\
 \hline
-- & eventos & Queue FIFO de objetos Evento \\
+eventos & Queue FIFO de objetos Evento \\
 \hline
-- & sensores & Vector de ponteiros para Sensor \\
+sensores & Vector de ponteiros para Sensor \\
 \hline
-- & comandoAlarme & Ponteiro para ComandoAlarme \\
+comandoAlarme & Ponteiro para ComandoAlarme \\
 \hline
 \end{tabular}
-\caption{Atributos da classe Simulacao}
-\end{table}
 
-\textbf{Métodos públicos:}
+\textbf{Metodos principais:}
 
 \begin{itemize}
     \item \texttt{Simulacao()}: Construtor
-    \item \texttt{~Simulacao()}: Destrutor
     \item \texttt{adicionarSensor(sensor)}: Adiciona sensor ao vetor
     \item \texttt{setComandoAlarme(comando)}: Associa comando e sensores
-    \item \texttt{iniciar(ficheiroEventos): bool}: Carrega eventos do ficheiro
+    \item \texttt{iniciar(ficheiroEventos)}: Carrega eventos do ficheiro
     \item \texttt{executar()}: Processa todos os eventos em FIFO
-    \item \texttt{obtemSensor(id): Sensor*}: Procura sensor por ID
+    \item \texttt{obtemSensor(id)}: Procura sensor por ID
 \end{itemize}
 
-\subsection{Relações entre Classes}
+\subsection{Relacoes entre Classes}
 
-\begin{figure}[h!]
-\centering
 \begin{tabular}{|l|p{8cm}|}
 \hline
-\textbf{Relação} & \textbf{Descrição} \\
+\textbf{Relacao} & \textbf{Descricao} \\
 \hline
-Simulacao \textrightarrow ComandoAlarme & Composição 1..1 \\
+Simulacao \textrightarrow ComandoAlarme & Composicao 1..1 \\
 \hline
-Simulacao \textrightarrow Sensor & Composição 1..n \\
+Simulacao \textrightarrow Sensor & Composicao 1..n \\
 \hline
-Sensor \textrightarrow ComandoAlarme & Associação n..1 \\
+Sensor \textrightarrow ComandoAlarme & Associacao n..1 \\
 \hline
 \end{tabular}
-\caption{Relações entre classes do sistema}
-\end{figure}
-
-\subsection{Diagrama UML Completo}
-
-\begin{figure}[h!]
-\centering
-\fbox{
-\begin{minipage}{\textwidth}
-\begin{verbatim}
-+----------------------------------+
-|      CLASSE ComandoAlarme         |
-+----------------------------------+
-| - estado : bool                   |
-| - senha : string                 |
-| - mensagem : string               |
-| - estadoCampainha : bool          |
-| - tentativas : int               |
-| - MAX_TENTATIVAS : const int     |
-+----------------------------------+
-| + ComandoAlarme()                |
-| + armar(senha : string) : void   |
-| + desarmar(senha : string) : bool|
-| + mudarSenha(senAnt, senNova)     |
-| + processarSensor(tipo, div)     |
-| + ativarCampainha() : void       |
-| + desativarCampainha() : void    |
-| + liga(senha) : void             |
-| + desliga(senha) : void          |
-| + getEstado() : bool             |
-| + getCampainha() : bool          |
-+----------------------------------+
-           △
-           | n..1
-           |
-+----------------------------------+
-|         CLASSE Sensor             |
-+----------------------------------+
-| - id : int                       |
-| - divisao : string               |
-| - estado : bool                  |
-| - tipo : TipoSensor              |
-| - comando : ComandoAlarme*       |
-+----------------------------------+
-| + Sensor(id, div, tipo)          |
-| + setComando(comando) : void     |
-| + ativar() : void                |
-| + desativar() : void            |
-| + notificar() : void             |
-| + fixaEstado(estado) : void     |
-| + getId() : int                  |
-| + getDivisao() : string          |
-| + getEstado() : bool             |
-| + getTipo() : TipoSensor         |
-+----------------------------------+
-
-+----------------------------------+
-|       CLASSE Simulacao            |
-+----------------------------------+
-| - eventos : queue<Evento>         |
-| - sensores : vector<Sensor*>     |
-| - comandoAlarme : CmdAlarme*     |
-+----------------------------------+
-| + Simulacao()                    |
-| + ~Simulacao()                  |
-| + adicionarSensor(sens) : void  |
-| + setComandoAlarme(cmd) : void  |
-| + iniciar(ficheiro) : bool      |
-| + executar() : void             |
-| + obtemSensor(id) : Sensor*     |
-+----------------------------------+
-           | 1..n
-           |
-           ▼
-      +---------+
-      | Sensor  |
-      +---------+
-\end{verbatim}
-\end{minipage}
-}
-\caption{Diagrama UML das classes do sistema}
-\end{figure}
 
 \newpage
 
-% SECAO 3: INSTALACAO E COMPILACAO
-\section{Instalação e Compilação}
+\section{Instalacao e Compilacao}
 
 \subsection{Requisitos de Sistema}
 
-Para compilar e executar o sistema de alarme, são necessários os seguintes requisitos:
-
 \begin{itemize}
     \item \textbf{Compilador C++}: g++ com suporte a C++11 ou superior
-    \item \textbf{Sistema Operativo}: Linux, macOS ou Windows (com MinGW/MSYS2)
-    \item \textbf{Ferramenta Make}: GNU Make para automatização da compilação
-    \item \textbf{Git}: Para controlo de versões (opcional)
+    \item \textbf{Sistema Operativo}: Linux, macOS ou Windows
+    \item \textbf{Ferramenta Make}: GNU Make
 \end{itemize}
 
-\subsection{Estrutura de Diretórios do Projeto}
+\subsection{Estrutura de Diretorios do Projeto}
 
 \begin{verbatim}
 proj2POO_AnaFreire/
-|
-+-- ComandoAlarme.hpp          # Header da classe ComandoAlarme
-+-- ComandoAlarme.cpp          # Implementacao da classe
-+-- Sensor.hpp                 # Header da classe Sensor
-+-- Sensor.cpp                 # Implementacao da classe
-+-- Simulacao.hpp              # Header da classe Simulacao
-+-- Simulacao.cpp              # Implementacao da classe
-+-- main.cpp                   # Programa principal (modo ficheiro)
-+-- mainMenu.cpp               # Programa com menu interativo
-+-- Makefile                   # Ficheiro de compilacao
-+-- eventos.dados              # Ficheiro de eventos de exemplo
-+-- uml_texto.txt             # Diagrama UML em texto
-+-- uml_plantuml.txt          # Codigo PlantUML
-+-- manual_tex/
-|   +-- main.tex              # Este manual em LaTeX
-+-- .git/                     # Repositorio Git
+|-- ComandoAlarme.hpp     (Header da classe)
+|-- ComandoAlarme.cpp     (Implementacao)
+|-- Sensor.hpp            (Header da classe)
+|-- Sensor.cpp            (Implementacao)
+|-- Simulacao.hpp         (Header da classe)
+|-- Simulacao.cpp         (Implementacao)
+|-- main.cpp              (Programa principal)
+|-- mainMenu.cpp          (Menu interativo)
+|-- Makefile              (Compilacao)
+|-- eventos.dados         (Ficheiro de eventos)
+|-- uml_texto.txt         (Diagrama UML texto)
+|-- uml_plantuml.txt      (Codigo PlantUML)
+|-- manual_tex/main.tex   (Este manual)
 \end{verbatim}
 
-\subsection{Compilação do Projeto}
+\subsection{Compilacao do Projeto}
 
-\subsubsection{Compilacao Standard (Modo Ficheiro de Eventos)}
+\subsubsection{Compilacao Standard}
 
 \begin{lstlisting}[language=bash]
-# Compilar o projeto
 make
-
-# Executar
 ./alarme
 \end{lstlisting}
 
 \subsubsection{Compilacao com Menu Interativo}
 
 \begin{lstlisting}[language=bash]
-# Compilar a versao com menu
 make menu
-
-# Executar
 ./alarmeMenu
 \end{lstlisting}
 
-\subsubsection{Limpar Ficheiros Compilados}
+\subsection{Limpar Ficheiros Compilados}
 
 \begin{lstlisting}[language=bash]
 make clean
 \end{lstlisting}
 
-\subsection{Verificacao da Instalacao}
-
-Aps a compilao, deve ser criado um executvel \texttt{alarme} ou \texttt{alarmeMenu}.
-Para verificar:
-
-\begin{lstlisting}[language=bash]
-ls -la alarme alarmeMenu
-# Deve mostrar os dois executaveis
-\end{lstlisting}
-
 \newpage
 
-% SECAO 4: MANUAL DE UTILIZACAO
-\section{Manual de Utilização}
-
-O sistema oferece duas formas de utilizacao: atravs de um menu interativo de consola
-ou atravs de um ficheiro de eventos. Esta seco descreve ambas as interfaces.
+\section{Manual de Utilizacao}
 
 \subsection{Menu Interativo}
 
-Ao executar o programa \texttt{alarmeMenu}, apresentado um menu de consola com
-10 opes numeradas.
+Ao executar \texttt{alarmeMenu}, e apresentado o seguinte menu:
 
-\begin{figure}[h!]
-\centering
-\fbox{
-\begin{minipage}{10cm}
 \begin{verbatim}
 ========================================
         MENU SISTEMA DE ALARME
@@ -487,67 +288,50 @@ Ao executar o programa \texttt{alarmeMenu}, apresentado um menu de consola com
  9. Desligar campainha
  0. Sair
 ========================================
- Escolha uma opcao:
 \end{verbatim}
-\end{minipage}
-}
-\caption{Menu principal do sistema}
-\end{figure}
+
+\subsection{Opcoes do Menu}
 
 \subsubsection{Opcao 1 - Armar Sistema}
 
-Arma o sistema de alarme. Requer introduzir a senha de 4 dgitos.
-A senha por omisso  \textbf{0000}.
+Arma o sistema de alarme. A senha por omissao e \textbf{0000}.
 
-\textbf{Exemplo de uso:}
 \begin{verbatim}
-Escolha uma opcao: 1
+> 1
 Introduza a senha: 0000
 [ALARME] Sistema armado com sucesso
 \end{verbatim}
 
-\textbf{Caso de erro (senha incorreta):}
-\begin{verbatim}
-[ALARME] Senha incorreta para armar
-\end{verbatim}
-
 \subsubsection{Opcao 2 - Desarmar Sistema}
 
-Desarma o sistema. Se a senha estiver incorreta 3 vezes, a campainha
-ativa automaticamente.
+Desarma o sistema. Se a senha estiver incorreta 3 vezes, a campainha ativa.
 
-\textbf{Exemplo de uso:}
 \begin{verbatim}
-Escolha uma opcao: 2
+> 2
 Introduza a senha: 0000
 [ALARME] Sistema desarmado
 \end{verbatim}
 
-\textbf{Processo de tentativas:}
+Tentativas erradas:
+
 \begin{verbatim}
-Escolha uma opcao: 2
+> 2
 Introduza a senha: 1111
 [ALARME] Senha incorreta. Tentativas: 1
+\end{verbatim}
 
-Escolha uma opcao: 2
-Introduza a senha: 2222
-[ALARME] Senha incorreta. Tentativas: 2
+Apos 3 tentativas:
 
-Escolha uma opcao: 2
-Introduza a senha: 3333
+\begin{verbatim}
 [ALARME] CAMPANHA ATIVADA - ALARME SONORO
-[ALARME] Tentativas: 3/3
 \end{verbatim}
 
 \subsubsection{Opcao 3 - Ativar Sensor}
 
-Ativa um sensor especificado. Se o sistema estiver armado, o evento
-dispara um alerta.
+Ativa um sensor especificado.
 
-\textbf{Exemplo de uso:}
 \begin{verbatim}
-Escolha uma opcao: 3
-
+> 3
 --- SENSORES ---
 Sensor 1: Sala | Movimento | INATIVO
 Sensor 2: Cozinha | Gas | INATIVO
@@ -556,16 +340,21 @@ Sensor 4: Casa de Banho | Inundacao | INATIVO
 Sensor 5: Entrada | Intrusao | INATIVO
 ID do sensor a ativar: 1
 [SENSOR 1] Ativado na divisao Sala
+\end{verbatim}
+
+Se o sistema estiver armado:
+
+\begin{verbatim}
 [ALARME] ALERTA: Sensor de Movimento ativado na divisao Sala
 [ALARME] Introduza a senha para desarmar (3 tentativas):
 \end{verbatim}
 
 \subsubsection{Opcao 4 - Desativar Sensor}
 
-Desativa um sensor que estava ativo.
+Desativa um sensor especifico.
 
 \begin{verbatim}
-Escolha uma opcao: 4
+> 4
 ID do sensor a desativar: 1
 [SENSOR 1] Desativado
 \end{verbatim}
@@ -575,8 +364,6 @@ ID do sensor a desativar: 1
 Mostra informacoes detalhadas sobre o estado atual.
 
 \begin{verbatim}
-Escolha uma opcao: 5
-
 --- ESTADO DO SISTEMA ---
 Sistema: ARMADO
 Campainha: DESATIVA
@@ -586,11 +373,9 @@ Mensagem: Sistema armado com sucesso
 
 \subsubsection{Opcao 6 - Listar Sensores}
 
-Lista todos os sensores com as suas caracteristicas.
+Lista todos os sensores.
 
 \begin{verbatim}
-Escolha uma opcao: 6
-
 --- SENSORES ---
 Sensor 1: Sala | Movimento | ATIVO
 Sensor 2: Cozinha | Gas | INATIVO
@@ -601,53 +386,35 @@ Sensor 5: Entrada | Intrusao | INATIVO
 
 \subsubsection{Opcao 7 - Mudar Senha}
 
-Altera a senha do sistema. A nova senha deve ter exatamente 4 dgitos.
+Altera a senha do sistema. A nova senha deve ter exatamente 4 digitos.
 
 \begin{verbatim}
-Escolha uma opcao: 7
+> 7
 Senha atual: 0000
 Nova senha (4 digitos): 1234
 [ALARME] Senha alterada com sucesso
 \end{verbatim}
 
-\textbf{Erro - Senha atual incorreta:}
-\begin{verbatim}
-[ALARME] Senha atual incorreta
-\end{verbatim}
-
-\textbf{Erro - Nova senha invalida:}
-\begin{verbatim}
-[ALARME] Nova senha deve ter 4 digitos
-\end{verbatim}
-
 \subsubsection{Opcao 8 - Carregar Eventos de Ficheiro}
 
-Carrega e executa automaticamente todos os eventos de um ficheiro de texto.
+Carrega e executa eventos de um ficheiro de texto.
 
 \begin{verbatim}
-Escolha uma opcao: 8
+> 8
 Nome do ficheiro de eventos: eventos.dados
 [SIMULACAO] A iniciar simulacao...
 [SIMULACAO] Carregados 10 eventos
-[SIMULACAO] Eventos carregados com sucesso
-
 ========================================
        INICIO DA SIMULACAO
-========================================
---- Processando evento: ARMAR 0000 ---
-[ALARME] Sistema armado com sucesso
-...
-========================================
-       FIM DA SIMULACAO
 ========================================
 \end{verbatim}
 
 \subsubsection{Opcao 9 - Desligar Campainha}
 
-Desativa manualmente a campainha (somente quando ativa).
+Desativa manualmente a campainha.
 
 \begin{verbatim}
-Escolha uma opcao: 9
+> 9
 [ALARME] Campainha desativada
 \end{verbatim}
 
@@ -656,121 +423,65 @@ Escolha uma opcao: 9
 Termina a execucao do programa.
 
 \begin{verbatim}
-Escolha uma opcao: 0
+> 0
 A sair do sistema...
 Sistema terminado.
 \end{verbatim}
 
 \newpage
 
-% SECAO 5: FICHEIRO DE EVENTOS
 \section{Formato do Ficheiro de Eventos}
 
-\subsection{Estrutura e Funcionamento}
+\subsection{Estrutura do Ficheiro}
 
-O ficheiro de eventos um ficheiro de texto simples onde cada linha representa
-um comando a ser executado pelo sistema. Os eventos so processados por ordem de
-chegada, seguindo a disciplina FIFO (\textit{First-In-First-Out}).
+O ficheiro de eventos e um ficheiro de texto simples onde cada linha representa
+um comando a ser executado. Os eventos sao processados por ordem de chegada (FIFO).
 
 \subsection{Tipos de Comandos}
 
-\begin{table}[h!]
-\centering
 \begin{tabular}{|l|l|p{6cm}|}
 \hline
 \textbf{Comando} & \textbf{Parametros} & \textbf{Descricao} \\
 \hline
-ARMAR & <senha> & Arma o sistema com a senha indicada \\
+ARMAR & <senha> & Arma o sistema \\
 \hline
-DESARMAR & <senha> & Desarma o sistema com a senha \\
+DESARMAR & <senha> & Desarma o sistema \\
 \hline
-MUDARSENHA & <senha\_antiga> <senha\_nova> & Altera a senha do sistema \\
+MUDARSENHA & <senha\_antiga> <senha\_nova> & Altera a senha \\
 \hline
-ATIVAR & <id\_sensor> & Ativa o sensor com o ID especificado \\
+ATIVAR & <id\_sensor> & Ativa o sensor \\
 \hline
-DESATIVAR & <id\_sensor> & Desativa o sensor especificado \\
+DESATIVAR & <id\_sensor> & Desativa o sensor \\
 \hline
 \end{tabular}
-\caption{Tabela de comandos do ficheiro de eventos}
-\end{table}
 
-\subsection{Exemplo Completo de Ficheiro}
-
-\begin{lstlisting}[caption={ficheiro eventos.dados - exemplo completo}]
-# Sistema de Alarme - Ficheiro de Eventos
-# Comentarios sao linhas que comecam com #
-
-# 1. Armar o sistema com senha padrao
-ARMAR 0000
-
-# 2. Ativar sensor de movimento na sala
-ATIVAR 1
-
-# 3. Desarmar com senha correta
-DESARMAR 0000
-
-# 4. Mudar senha para 1234
-MUDARSENHA 0000 1234
-
-# 5. Armar novamente com nova senha
-ARMAR 1234
-
-# 6. Ativar sensores de gas e intrusao
-ATIVAR 2
-ATIVAR 3
-
-# 7. Desarmar com nova senha
-DESARMAR 1234
-
-# 8. Entrada - sensor de intrusao
-ATIVAR 5
-
-# 9. Mudar senha novamente
-MUDARSENHA 1234 9999
-
-# 10. Desarmar com senha final
-DESARMAR 9999
-\end{lstlisting}
-
-\subsection{Execucao do Ficheiro de Eventos}
-
-A execucao do ficheiro de eventos produz o seguinte output:
+\subsection{Exemplo de Ficheiro}
 
 \begin{verbatim}
-========================================
-       INICIO DA SIMULACAO
-========================================
+# Sistema de Alarme - Ficheiro de Eventos
 
---- Processando evento: ARMAR 0000 ---
-[ALARME] Sistema armado com sucesso
-
---- Processando evento: ATIVAR 1 ---
-[SENSOR 1] Ativado na divisao Sala
-[ALARME] ALERTA: Sensor de Movimento ativado na divisao Sala
-[ALARME] Introduza a senha para desarmar (3 tentativas):
-
---- Processando evento: DESARMAR 0000 ---
-[ALARME] Sistema desarmado
-...
-
-========================================
-       FIM DA SIMULACAO
-========================================
+ARMAR 0000
+ATIVAR 1
+DESARMAR 0000
+MUDARSENHA 0000 1234
+ATIVAR 2
+ATIVAR 3
+DESARMAR 1234
+ATIVAR 5
+MUDARSENHA 1234 9999
+DESARMAR 9999
 \end{verbatim}
 
 \subsection{Cenario de Teste: Campainha Automatica}
 
-Este exemplo demonstra a ativacao automatica da campainha apos 3 tentativas
-erradas de desarmar:
-
-\begin{lstlisting}[caption={teste\_campainha.dados}]
+\begin{verbatim}
 ARMAR 0000
 ATIVAR 1
 DESARMAR 1111
 DESARMAR 2222
 DESARMAR 3333
 DESARMAR 0000
-\end{lstlisting}
+\end{verbatim}
 
 Output esperado:
 
@@ -790,567 +501,276 @@ Output esperado:
 
 --- Processando evento: DESARMAR 0000 ---
 [ALARME] Sistema desarmado
-[ALARME] Campainha desativada
 \end{verbatim}
 
 \newpage
 
-% SECAO 6: DIAGRAMAS UML
-\section{Diagramas UML Detalhados}
+\section{Diagramas UML}
 
-\subsection{Diagrama de Classes Completo}
+\subsection{Diagrama de Classes}
 
-\begin{figure}[h!]
-\centering
-\fbox{
-\begin{minipage}{\textwidth}
-\begin{center}
-\textbf{Classe ComandoAlarme}\par\medskip
-\begin{tabular}{|c|p{10cm}|}
-\hline
-\textbf{Atributos Privados} & \\
-\hline
-- estado : bool & Indica se sistema est armado (true) ou desarmado (false) \\
-\hline
-- senha : string & Senha de 4 dgitos para autenticao \\
-\hline
-- mensagem : string & Ultima mensagem descritiva do sistema \\
-\hline
-- estadoCampainha : bool & Indica se campainha est ativa (true) ou no (false) \\
-\hline
-- tentativas : int & Contador de tentativas de senha falhadas \\
-\hline
-- MAX\_TENTATIVAS : const int = 3 & Constante com maximo de tentativas \\
-\hline
-\end{tabular}\par\medskip
-\begin{tabular}{|c|p{10cm}|}
-\hline
-\textbf{Metodos Publicos} & \\
-\hline
-+ ComandoAlarme() & Construtor padrao (senha = "0000") \\
-\hline
-+ ComandoAlarme(senhaInicial : string) & Construtor com senha especificada \\
-\hline
-+ armar(senha : string) : void & Arma sistema se senha correta \\
-\hline
-+ desarmar(senha : string) : bool & Desarma sistema, retorna sucesso \\
-\hline
-+ mudarSenha(senAnt, senNova : string) : bool & Altera senha se correta \\
-\hline
-+ processarSensor(tipo, div : string) : void & Processa notificao de sensor \\
-\hline
-+ ativarCampainha() : void & Ativa alarme sonoro \\
-\hline
-+ desativarCampainha() : void & Desativa alarme sonoro \\
-\hline
-+ resetTentativas() : void & Reinicia contador de tentativas \\
-\hline
-+ liga(senha : string) : void & Alias para armar \\
-\hline
-+ desliga(senha : string) : void & Alias para desarmar \\
-\hline
-+ getEstado() : bool & Retorna estado do sistema \\
-\hline
-+ getEstadoCampainha() : bool & Retorna estado da campainha \\
-\hline
-+ getSenha() : string & Retorna senha atual \\
-\hline
-+ getMensagem() : string & Retorna ultima mensagem \\
-\hline
-+ getTentativas() : int & Retorna numero de tentativas \\
-\hline
-+ getMaxTentativas() : int & Retorna maximo de tentativas \\
-\hline
-\end{tabular}
-\end{center}
-\end{minipage}
-}
-\caption{Especificacao completa da classe ComandoAlarme}
-\end{figure}
+\begin{verbatim}
++----------------------------------+
+|      CLASSE ComandoAlarme         |
++----------------------------------+
+| - estado : bool                   |
+| - senha : string                 |
+| - mensagem : string              |
+| - estadoCampainha : bool         |
+| - tentativas : int                |
+| - MAX_TENTATIVAS : const int     |
++----------------------------------+
+| + ComandoAlarme()                |
+| + armar(senha) : void            |
+| + desarmar(senha) : bool        |
+| + mudarSenha(senAnt, senNova)    |
+| + processarSensor(tipo, div)     |
+| + ativarCampainha() : void       |
+| + desativarCampainha() : void   |
+| + liga(senha) : void            |
+| + desliga(senha) : void         |
+| + getEstado() : bool            |
++----------------------------------+
 
-\begin{figure}[h!]
-\centering
-\fbox{
-\begin{minipage}{\textwidth}
-\begin{center}
-\textbf{Classe Sensor}\par\medskip
-\begin{tabular}{|c|p{10cm}|}
-\hline
-\textbf{Atributos Privados} & \\
-\hline
-- id : int & Identificador unico do sensor \\
-\hline
-- divisao : string & Nome da diviso onde est instalado \\
-\hline
-- estado : bool & true=ativo (detectou algo), false=inativo \\
-\hline
-- tipo : TipoSensor & Enum: INTRUSAO, MOVIMENTO, FOGO, GAS, INUNDACAO \\
-\hline
-- comando : ComandoAlarme* & Ponteiro para central de comando \\
-\hline
-\end{tabular}\par\medskip
-\begin{tabular}{|c|p{10cm}|}
-\hline
-\textbf{Metodos Publicos} & \\
-\hline
-+ Sensor(id : int, div : string, tipo : TipoSensor) & Construtor \\
-\hline
-+ setComando(comando : ComandoAlarme*) : void & Associa central \\
-\hline
-+ ativar() : void & Ativa sensor e notifica central \\
-\hline
-+ desativar() : void & Desativa sensor \\
-\hline
-+ notificar() : void const & Envia notificao ao ComandoAlarme \\
-\hline
-+ fixaEstado(estado : bool) : void & Define estado do sensor \\
-\hline
-+ getId() : int const & Retorna ID do sensor \\
-\hline
-+ getDivisao() : string const & Retorna nome da diviso \\
-\hline
-+ getEstado() : bool const & Retorna estado atual \\
-\hline
-+ getTipo() : TipoSensor const & Retorna tipo do sensor \\
-\hline
-+ getTipoString() : string const & Retorna tipo em formato texto \\
-\hline
-\end{tabular}
-\end{center}
-\end{minipage}
-}
-\caption{Especificacao completa da classe Sensor}
-\end{figure}
++----------------------------------+
+|         CLASSE Sensor             |
++----------------------------------+
+| - id : int                       |
+| - divisao : string               |
+| - estado : bool                  |
+| - tipo : TipoSensor              |
+| - comando : CmdAlarme*           |
++----------------------------------+
+| + Sensor(id, div, tipo)         |
+| + setComando(comando) : void    |
+| + ativar() : void               |
+| + desativar() : void            |
+| + notificar() : void            |
+| + fixaEstado(estado) : void     |
+| + getId() : int                 |
+| + getDivisao() : string         |
++----------------------------------+
 
-\begin{figure}[h!]
-\centering
-\fbox{
-\begin{minipage}{\textwidth}
-\begin{center}
-\textbf{Classe Simulacao}\par\medskip
-\begin{tabular}{|c|p{10cm}|}
-\hline
-\textbf{Atributos Privados} & \\
-\hline
-- eventos : queue<Evento> & Fila FIFO de eventos a processar \\
-\hline
-- sensores : vector<Sensor*> & Colecao de ponteiros para sensores \\
-\hline
-- comandoAlarme : ComandoAlarme* & Ponteiro para central de comando \\
-\hline
-\end{tabular}\par\medskip
-\begin{tabular}{|c|p{10cm}|}
-\hline
-\textbf{Metodos Publicos} & \\
-\hline
-+ Simulacao() & Construtor padrao \\
-\hline
-+ ~Simulacao() & Destrutor \\
-\hline
-+ adicionarSensor(sensor : Sensor*) : void & Adiciona sensor colecao \\
-\hline
-+ setComandoAlarme(comando : ComandoAlarme*) : void & Associa central \\
-\hline
-+ iniciar(ficheiroEventos : string) : bool & Carrega eventos do ficheiro \\
-\hline
-+ executar() : void & Processa todos os eventos em FIFO \\
-\hline
-+ obtemSensor(id : int) : Sensor* const & Procura sensor por ID \\
-\hline
-\end{tabular}\par\medskip
-\textbf{Struct Evento}\par\medskip
-\begin{tabular}{|c|p{10cm}|}
-\hline
-+ tipo : string & Tipo de evento (ARMAR, DESARMAR, etc.) \\
-\hline
-+ param1 : string & Primeiro parametro do evento \\
-\hline
-+ param2 : string & Segundo parametro do evento (opcional) \\
-\hline
-\end{tabular}
-\end{center}
-\end{minipage}
-}
-\caption{Especificacao completa da classe Simulacao}
-\end{figure}
-
-\newpage
++----------------------------------+
+|        CLASSE Simulacao           |
++----------------------------------+
+| - eventos : queue<Evento>        |
+| - sensores : vector<Sensor*>     |
+| - comandoAlarme : CmdAlarme*     |
++----------------------------------+
+| + Simulacao()                    |
+| + adicionarSensor(sens) : void  |
+| + setComandoAlarme(cmd) : void |
+| + iniciar(ficheiro) : bool      |
+| + executar() : void             |
+| + obtemSensor(id) : Sensor*     |
++----------------------------------+
+\end{verbatim}
 
 \subsection{Diagrama de Composicao}
 
-\begin{figure}[h!]
-\centering
-\fbox{
-\begin{minipage}{\textwidth}
-\begin{center}
 \begin{verbatim}
-    +--------------------------------------------------+
-    |              CLASSE Simulacao                    |
-    |                                                  |
-    |  - eventos: queue<Evento>                        |
-    |  - sensores: vector<Sensor*>                     |
-    |  - comandoAlarme: ComandoAlarme*                 |
-    |                                                  |
-    |  + Simulacao()                                   |
-    |  + adicionarSensor(sensor: Sensor*)              |
-    |  + setComandoAlarme(comando: CmdAlarme*)         |
-    |  + iniciar(ficheiro: string): bool               |
-    |  + executar(): void                              |
-    |  + obtemSensor(id: int): Sensor*                 |
-    +--------------------------------------------------+
-                    | composicao 1..1 |
-                    v
-    +--------------------------------------------------+
-    |            CLASSE ComandoAlarme                  |
-    |                                                  |
-    |  - estado: bool                                  |
-    |  - senha: string                                 |
-    |  - mensagem: string                              |
-    |  - estadoCampainha: bool                         |
-    |  - tentativas: int                               |
-    |  - MAX_TENTATIVAS: const int = 3                 |
-    +--------------------------------------------------+
-                    ^ associacao n..1 |
-                    |                |
-    +-------------------------+       |
-    |      CLASSE Sensor      |-------+
-    |                         |
-    |  - id: int              |
-    |  - divisao: string      |
-    |  - estado: bool         |
-    |  - tipo: TipoSensor     |
-    |  - comando: CmdAlarme*  |
-    +-------------------------+
-                    ^ composicao 1..n
-                    |
-                    v
-    +-------------------------+
-    |  Array de Sensores      |
-    |  [Sensor* x 5]          |
-    |                         |
-    |  [1] Sala - Movimento   |
-    |  [2] Cozinha - Gas      |
-    |  [3] Quarto - Intrusao  |
-    |  [4] CasaBanho - Inund  |
-    |  [5] Entrada - Intrusao |
-    +-------------------------+
+    +----------------------------------------+
+    |           CLASSE Simulacao              |
+    |                                        |
+    |  - eventos: queue<Evento>              |
+    |  - sensores: vector<Sensor*>           |
+    |  - comandoAlarme: ComandoAlarme*       |
+    +----------------------------------------+
+              | composicao 1..1 |
+              v
+    +----------------------------------------+
+    |          CLASSE ComandoAlarme           |
+    |                                        |
+    |  - estado: bool                        |
+    |  - senha: string                       |
+    |  - estadoCampainha: bool               |
+    |  - tentativas: int                     |
+    +----------------------------------------+
+              ^ associacao n..1 |
+              |                |
+    +------------------------+  |
+    |     CLASSE Sensor      |--+--.
+    |                        |     |
+    |  - id: int            |     |
+    |  - divisao: string    |     |
+    |  - estado: bool       |     |
+    |  - tipo: TipoSensor   |     |
+    +------------------------+     |
+              ^ composicao 1..n    |
+              |                     |
+              v                     |
+    +------------------------+     |
+    |   Array de Sensores    |-----'
+    |   [Sensor* x 5]       |
+    |                        |
+    |   [1] Sala - Movimento|
+    |   [2] Cozinha - Gas    |
+    |   [3] Quarto - Intrusao|
+    |   [4] CasaBanho - Inund|
+    |   [5] Entrada - Intrusao
+    +------------------------+
 \end{verbatim}
-\end{center}
-\end{minipage}
-}
-\caption{Diagrama de composicao do sistema}
-\end{figure}
-
-\subsection{Diagrama de Sequencia: Armar e Ativar Sensor}
-
-\begin{figure}[h!]
-\centering
-\fbox{
-\begin{minipage}{\textwidth}
-\begin{center}
-\textbf{Diagrama de Sequencia: Armar Sistema e Ativar Sensor}\par\medskip
-\begin{verbatim}
-+--------+    +--------+    +--------+    +------------+
-|Utilizad|    |Simulaca|    | Sensor |    |CmdAlarme   |
-+--------+    +--------+    +--------+    +------------+
-   |             |             |              |
-   | 1.armar()  |             |              |
-   |------------>>>            |              |
-   |             |             |              |
-   |             | 2.armar()   |              |
-   |             |------------->>>              |
-   |             |             |              |
-   |             |             | 3.validar   |
-   |             |             |------------->>|
-   |             |             |              |
-   |             |             | 4.OK        |
-   |             |             |<<------------|
-   |             | 5.OK        |              |
-   |             |<<------------              |
-   | 6.OK        |             |              |
-   |<<------------             |              |
-   |             |             |              |
-   | 7.ativar(1) |             |              |
-   |------------>>>            |              |
-   |             |             |              |
-   |             | 8.ativar()  |              |
-   |             |------------>>>             |
-   |             |             |              |
-   |             |             | 9.notificar |
-   |             |             |------------->>|
-   |             |             |              |
-   |             |             |10.ALERTA    |
-   |             |             |<<------------|
-   |             |             |              |
-   |             |             | 11.display  |
-   |             | 12.display  |              |
-   |             |<<-------------------------|
-   |             |             |              |
-   |             |             |              |
-\end{verbatim}
-\end{center}
-\end{minipage}
-}
-\caption{Diagrama de sequencia: ativar sensor com sistema armado}
-\end{figure}
 
 \subsection{Diagrama de Estados}
 
-\begin{figure}[h!]
-\centering
-\fbox{
-\begin{minipage}{10cm}
-\begin{center}
-\textbf{Diagrama de Estados do Sistema de Alarme}\par\medskip
 \begin{verbatim}
-                    +---------------+
-                    |   INICIAL     |
-                    |  (Desarmado)  |
-                    +---------------+
-                           |
-                           | armar(senhaOK)
-                           v
-                    +---------------+
-         +-------->|    ARMADO     |<--------+
-         |         +---------------+          |
-         |                  |                  |
-         |                  | sensorAtivado   |
-         |                  v                  |
-         |          +---------------+           |
-         |          |   ALERTA      |           |
-         |          |  (Armado +    |           |
-         |          |   Sensor      |           |
-         |          |   Ativado)    |           |
-         |          +---------------+           |
-         |                  |                  |
-         |                  | desarmar(OK)    |
-         |                  v                  |
-         |          +---------------+          |
-         +----------|   DESARMADO   |----------+
-          tentativas |   (Normal)    | senhaOK
-           >= 3     +---------------+
-                           ^
-                           |
-                           | desarmar(OK)
-                           |
-                    +---------------+
-                    |   CAMPANHA    |
-                    |   ATIVA       |
-                    +---------------+
+    +---------------+
+    |   INICIAL     |
+    |  (Desarmado)  |
+    +---------------+
+           |
+           | armar(senhaOK)
+           v
+    +---------------+
+    |    ARMADO     |<--------+
+    +---------------+         |
+           |                  |
+           | sensorAtivado    |
+           v                  |
+    +---------------+         |
+    |    ALERTA     |         |
+    |  (Armado +    |         |
+    |   Sensor)     |         |
+    +---------------+         |
+           |                  |
+           | desarmar(OK)    |
+           v                  |
+    +---------------+         |
+    |   DESARMADO   |---------+
+    |   (Normal)    | senhaOK
+    +---------------+
+           ^
+           |
+           | desarmar(OK)
+           |
+    +---------------+
+    |   CAMPANHA    |
+    |    ATIVA      |
+    +---------------+
+           |
+           | desarmar(OK)
+           v
+    +---------------+
+    |   DESARMADO   |
+    +---------------+
 \end{verbatim}
-\end{center}
-\end{minipage}
-}
-\caption{Diagrama de estados do sistema}
-\end{figure}
 
 \newpage
 
-% SECAO 7: TESTES E VALIDACAO
 \section{Testes e Validacao}
 
 \subsection{Cenarios de Teste}
 
-\subsubsection{Teste 1: Ciclo Basico de Operacao}
-
-\textbf{Objetivo:} Verificar o funcionamento basico do sistema.
+\subsubsection{Teste 1: Ciclo Basico}
 
 \begin{enumerate}
-    \item Executar programa com menu interativo
-    \item Armar sistema com senha correta (0000)
-    \item Verificar que sistema fica armado
-    \item Desarmar sistema com senha correta
-    \item Verificar que sistema fica desarmado
+    \item Armar com senha correta (0000)
+    \item Verificar sistema armado
+    \item Desarmar com senha correta
+    \item Verificar sistema desarmado
 \end{enumerate}
 
-\textbf{Resultado esperado:} Sistema responde corretamente a ambos os comandos.
+\textbf{Resultado:} Sistema responde corretamente.
 
-\subsubsection{Teste 2: Tentativas Erradas e Campainha}
-
-\textbf{Objetivo:} Verificar a ativacao automatica da campainha.
+\subsubsection{Teste 2: Tentativas Erradas}
 
 \begin{enumerate}
     \item Armar sistema
-    \item Tentar desarmar com senha errada (1111)
-    \item Verificar contador = 1
-    \item Tentar desarmar com senha errada (2222)
-    \item Verificar contador = 2
-    \item Tentar desarmar com senha errada (3333)
-    \item Verificar campainha ATIVA e contador = 3
-    \item Desarmar com senha correta (0000)
+    \item Tentar desarmar com senha errada 3 vezes
+    \item Verificar campainha ativa apos 3 tentativas
+    \item Desarmar com senha correta
     \item Verificar sistema desarmado e campainha desativada
 \end{enumerate}
 
-\textbf{Resultado esperado:} Campainha ativa apos 3 tentativas falhadas.
+\textbf{Resultado:} Campainha ativa apos 3 tentativas falhadas.
 
 \subsubsection{Teste 3: Alteracao de Senha}
 
-\textbf{Objetivo:} Verificar a funcionalidade de alteracao de senha.
-
 \begin{enumerate}
-    \item Verificar senha padrao (0000) funciona
     \item Alterar senha de 0000 para 1234
     \item Verificar nova senha (1234) funciona
     \item Verificar senha antiga (0000) rejeitada
-    \item Alterar senha de 1234 para 9999
-    \item Verificar nova senha (9999) funciona
 \end{enumerate}
 
-\textbf{Resultado esperado:} Alteracao de senha funciona corretamente.
-
-\subsubsection{Teste 4: Processamento de Sensores}
-
-\textbf{Objetivo:} Verificar a interacao sensor-ComandoAlarme.
-
-\begin{enumerate}
-    \item Listar sensores existentes (5 sensores)
-    \item Ativar sensor 1 (Sala - Movimento)
-    \item Verificar sensor fica ATIVO
-    \item Verificar mensagem de alerta exibida
-    \item Desativar sensor 1
-    \item Verificar sensor fica INATIVO
-\end{enumerate}
-
-\textbf{Resultado esperado:} Sensores ativam/desativam corretamente.
-
-\subsubsection{Teste 5: Execucao de Ficheiro de Eventos}
-
-\textbf{Objetivo:} Verificar o processamento de eventos em modo FIFO.
-
-\begin{enumerate}
-    \item Criar ficheiro de teste com 5 eventos
-    \item Carregar ficheiro via opcao 8 do menu
-    \item Verificar que todos os eventos sao processados
-    \item Verificar ordem de processamentos (FIFO)
-\end{enumerate}
-
-\textbf{Resultado esperado:} Eventos processados por ordem de chegada.
+\textbf{Resultado:} Alteracao de senha funciona corretamente.
 
 \subsection{Tabela de Testes}
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{|l|l|p{4cm}|p{4cm}|}
+\begin{tabular}{|l|l|p{4cm}|l|}
 \hline
-\textbf{ID} & \textbf{Teste} & \textbf{Criterio} & \textbf{Resultado} \\
+\textbf{ID} & \textbf{Teste} & \textbf{Criterio} & \textbf{OK?} \\
 \hline
-T01 & Armar/Desarmar & Sistema muda de estado & OK \\
+T01 & Armar/Desarmar & Sistema muda de estado & Sim \\
 \hline
-T02 & Tentativas 3x & Campainha ativa & OK \\
+T02 & Tentativas 3x & Campainha ativa & Sim \\
 \hline
-T03 & Mudar Senha & Senha alterada & OK \\
+T03 & Mudar Senha & Senha alterada & Sim \\
 \hline
-T04 & Ativar Sensor & Sensor notifica & OK \\
+T04 & Ativar Sensor & Sensor notifica & Sim \\
 \hline
-T05 & FIFO Eventos & Ordem mantida & OK \\
+T05 & FIFO Eventos & Ordem mantida & Sim \\
 \hline
-T06 & Sensor Inexistente & Mensagem de erro & OK \\
+T06 & Sensor Inexistente & Mensagem de erro & Sim \\
 \hline
-T07 & Senha Invalida & Rejeitada & OK \\
+T07 & Senha Invalida & Rejeitada & Sim \\
 \hline
-T08 & Campainha Manual & Desativa quando desarmado & OK \\
+T08 & Campainha Manual & Desativa quando desarmado & Sim \\
 \hline
 \end{tabular}
-\caption{Tabela de testes de validacao}
-\end{table}
 
 \newpage
 
-% SECAO 8: CONCLUSAO
 \section{Conclusao}
 
 O presente projeto de Sistema de Alarme Domestico representa a aplicacao pratica
-dos conceitos fundamentais de Programacao Orientada aos Objetos utilizando a
-linguagem C++. Atraves do desenvolvimento deste sistema, foram implementados e
-consolidados diversos conceitos teoricos da disciplina.
+dos conceitos fundamentais de Programacao Orientada aos Objetos utilizando C++.
 
 \subsection{Conceitos POO Implementados}
 
-O projeto evidencia a aplicacao dos seguintes pilares da programacao orientada
-aos objetos:
-
 \begin{enumerate}
-    \item \textbf{Encapsulamento}: Cada classe expeem apenas interfaces publicas,
-    mantendo os atributos privados e protegidos, garantindo a integridade dos
-    dados e controlando o acesso aos mesmos.
-
-    \item \textbf{Composicao}: A classe Simulacao e composta por objetos das classes
-    ComandoAlarme e Sensor, estabelecendo uma relacao "tem-um" onde os componentes
-    existem como parte integrant da classe container.
-
-    \item \textbf{Associacao}: Os Sensores mantem uma referencia (ponteiro) ao
-    ComandoAlarme ao qual estao associados, permitindo a comunicacao entre objetos
-    de classes diferentes.
-
-    \item \textbf{Gestao de Memoria}: Utilizacao adequada de ponteiros para gerir
-    as associacoes entre objetos, garantindo o ciclo de vida correto dos mesmos.
-
-    \item \textbf{STL (Standard Template Library)}: Implementacao pratica dos
-    contentores std::queue (fila FIFO) e std::vector (colecao dinamica), demonstrando
-    a capacidade de utilizar bibliotecas padrao da linguagem.
+    \item \textbf{Encapsulamento}: Atributos privados com metodos publicos de acesso
+    \item \textbf{Composicao}: Classe Simulacao contem objetos ComandoAlarme e Sensor
+    \item \textbf{Associacao}: Sensores mantem referencia ao ComandoAlarme
+    \item \textbf{Gestao de Memoria}: Utilizacao correta de ponteiros
+    \item \textbf{STL}: std::queue e std::vector
 \end{enumerate}
 
 \subsection{Resultados Alcancados}
 
-O sistema desenvolvido cumpre todos os requisitos funcionais definidos no
-enunciado do projeto:
-
 \begin{itemize}
     \item Gestao de estados armado/desarmado
-    \item Autenticacao por senha de 4 dgitos
+    \item Autenticacao por senha de 4 digitos
     \item Controlo de campainha com 3 tentativas
     \item Suporte a 5 tipos de sensores
     \item Processamento de eventos em fila FIFO
     \item Interface de menu interativo
-    \item Documentacao completa em codigo e manual
+    \item Documentacao completa
 \end{itemize}
 
 \subsection{Limitações e Trabalho Futuro}
 
-Apesar de o sistema cumprir os requisitos especificados, existem areas que podem
-ser melhoradas em trabalhos futuros:
-
 \begin{itemize}
-    \item \textbf{Heranca}: Implementar uma classe base Componente de onde derivem
-    Sensor e ComandoAlarme, como sugerido na correcao do professor.
-
-    \item \textbf{Persistência}: Adicionar gravacao e leitura de dados em ficheiros
-    para manter o estado entre execucoes.
-
-    \item \textbf{Interface Grafica}: Desenvolver uma GUI (Graphical User Interface)
-    para substituir a consola de texto.
-
-    \item \textbf{Múltiplos Utilizadores}: Implementar sistema de usuarios com
-    diferentes niveis de acesso.
-
-    \item \textbf{Timestamps}: Adicionar data e hora aos eventos para logs detalhados.
-
-    \item \textbf{Tipos de Eventos}: Expandir os tipos de eventos suportados pelo
-    sistema de simulacao.
+    \item Implementar classe base Componente com heranca
+    \item Adicionar persistencia em ficheiros
+    \item Desenvolver interface grafica (GUI)
+    \item Implementar sistema de multiples utilizadores
+    \item Adicionar timestamps aos eventos
 \end{itemize}
 
-\subsection{Tecnologias e Ferramentas Utilizadas}
-
-O desenvolvimento do projeto utilizou as seguintes ferramentas:
+\subsection{Tecnologias Utilizadas}
 
 \begin{itemize}
-    \item \textbf{Linguagem}: C++11/14
-    \item \textbf{Compilador}: g++ (GNU Compiler Collection)
+    \item \textbf{Linguagem}: C++11
+    \item \textbf{Compilador}: g++
     \item \textbf{Sistema Operativo}: Linux
-    \item \textbf{Controlo de Versoes}: Git
-    \item \textbf{Repositorio Remoto}: GitHub
+    \item \textbf{Controlo de Versoes}: Git / GitHub
     \item \textbf{Documentacao}: LaTeX (Overleaf)
-    \item \textbf{Digramação}: PlantUML
+    \item \textbf{Digramacao}: PlantUML
 \end{itemize}
-
-\subsection{Agradecimentos}
-
-Este projeto foi desenvolvido no ambito da unidade curricular de Programacao
-Orientada aos Objetos, sob orientacao do corpo docente da instituicao.
 
 \newpage
 
-% SECAO 9: REFERENCIAS
 \section{Referencias}
 
 \begin{thebibliography}{9}
@@ -1361,117 +781,79 @@ Orientada aos Objetos, sob orientacao do corpo docente da instituicao.
 
     \bibitem{stl}
     cppreference.com. \textit{Standard C++ Library Reference}.
-    \url{https://en.cppreference.com/}, 2026.
+    https://en.cppreference.com/
 
     \bibitem{uml}
     Object Management Group (OMG). \textit{UML Specification}.
-    \url{https://www.omg.org/spec/UML/}, 2024.
+    https://www.omg.org/spec/UML/
 
     \bibitem{plantuml}
     PlantUML. \textit{Open Source UML Diagram Generator}.
-    \url{https://www.plantuml.com/}, 2026.
-
-    \bibitem{git}
-    Git SCM. \textit{Git Documentation}.
-    \url{https://git-scm.com/doc}, 2026.
+    https://www.plantuml.com/
 
     \bibitem{overleaf}
     Overleaf. \textit{Online LaTeX Editor}.
-    \url{https://www.overleaf.com/}, 2026.
+    https://www.overleaf.com/
 
 \end{thebibliography}
 
 \newpage
 
-% SECAO 10: ANEXOS
 \section{Anexos}
 
-\subsection{Anexo A: Lista Completa de Ficheiros}
+\subsection{Anexo A: Lista de Ficheiros}
 
-\begin{longtable}{|l|p{8cm}|}
+\begin{tabular}{|l|p{8cm}|}
 \hline
 \textbf{Ficheiro} & \textbf{Descricao} \\
 \hline
-\endfirsthead
+ComandoAlarme.hpp & Header da classe ComandoAlarme \\
 \hline
-\textbf{Ficheiro} & \textbf{Descricao} \\
+ComandoAlarme.cpp & Implementacao da classe ComandoAlarme \\
 \hline
-\endhead
+Sensor.hpp & Header da classe Sensor \\
 \hline
-\endfoot
-ComandoAlarme.hpp & Header da classe ComandoAlarme com documentacao Javadoc \\
+Sensor.cpp & Implementacao da classe Sensor \\
 \hline
-ComandoAlarme.cpp & Implementacao dos metodos da classe ComandoAlarme \\
+Simulacao.hpp & Header da classe Simulacao \\
 \hline
-Sensor.hpp & Header da classe Sensor e enum TipoSensor \\
+Simulacao.cpp & Implementacao da classe Simulacao \\
 \hline
-Sensor.cpp & Implementacao dos metodos da classe Sensor \\
+main.cpp & Programa principal (modo ficheiro) \\
 \hline
-Simulacao.hpp & Header da classe Simulacao e struct Evento \\
+mainMenu.cpp & Menu interativo \\
 \hline
-Simulacao.cpp & Implementacao dos metodos da classe Simulacao \\
-\hline
-main.cpp & Programa principal (modo ficheiro de eventos) \\
-\hline
-mainMenu.cpp & Programa com interface de menu interativo \\
-\hline
-Makefile & Ficheiro de compilacao automatica \\
+Makefile & Ficheiro de compilacao \\
 \hline
 eventos.dados & Ficheiro de eventos de exemplo \\
 \hline
-uml\_texto.txt & Diagrama UML em formato texto \\
+uml\_texto.txt & Diagrama UML em texto \\
 \hline
-uml\_plantuml.txt & Codigo fonte PlantUML para geracao de diagramas \\
+uml\_plantuml.txt & Codigo PlantUML \\
 \hline
-manual\_tex/main.tex & Codigo fonte LaTeX deste manual \\
+manual\_tex/main.tex & Codigo LaTeX deste manual \\
 \hline
-\end{longtable}
+\end{tabular}
 
 \subsection{Anexo B: Comandos do Makefile}
 
-\begin{table}[h!]
-\centering
-\begin{tabular}{|l|p{8cm}|}
+\begin{tabular}{|l|p{6cm}|}
 \hline
 \textbf{Comando} & \textbf{Descricao} \\
 \hline
-make & Compila a versao de ficheiro de eventos (gera \texttt{alarme}) \\
+make & Compila versao ficheiro de eventos \\
 \hline
-make menu & Compila a versao com menu interativo (gera \texttt{alarmeMenu}) \\
+make menu & Compila versao com menu interativo \\
 \hline
 make run & Compila e executa a versao de ficheiro \\
 \hline
-make clean & Remove os ficheiros executaveis compilados \\
-\hline
-make all & Compila ambas as versoes \\
+make clean & Remove os executaveis \\
 \hline
 \end{tabular}
-\caption{Comandos disponiveis no Makefile}
-\end{table}
 
-\subsection{Anexo C: Formato de Codigo Fonte}
+\subsection{Anexo C: Especificacoes Tecnicas}
 
-O projeto segue as seguintes convencoes de codificacao:
-
-\begin{itemize}
-    \item \textbf{Headers}: Extensao \texttt{.hpp} para headers C++
-    \item \textbf{Implementacao}: Extensao \texttt{.cpp} para codigo fonte
-    \item \textbf{Indentacao}: 4 espacos (nao usar tabs)
-    \item \textbf{Nomenclatura}:
-    \begin{itemize}
-        \item Classes: PascalCase (ex: ComandoAlarme)
-        \item Metodos: camelCase (ex: getEstado)
-        \item Atributos: camelCase com underscore opcional (ex: estadoCampainha)
-        \item Constantes: UPPER\_CASE (ex: MAX\_TENTATIVAS)
-    \end{itemize}
-    \item \textbf{Documentacao}: Comentarios Javadoc em todos os headers
-\end{itemize}
-
-\subsection{Anexo D: Especificacoes Tecnicas}
-
-\begin{table}[h!]
-\centering
-\begin{tabular}{|l|p{8cm}|}
+\begin{tabular}{|l|p{6cm}|}
 \hline
 \textbf{Especificacao} & \textbf{Valor} \\
 \hline
@@ -1479,23 +861,19 @@ Versao C++ & C++11 \\
 \hline
 Compilador & g++ (GCC) \\
 \hline
-Sistema Operativo & Linux/macOS/Windows \\
-\hline
 Senha Padrao & 0000 \\
 \hline
 Maximo de Tentativas & 3 \\
 \hline
 Numero de Divisoes & 5 \\
 \hline
-Numero de Sensores & 5 (1 por diviso) \\
+Numero de Sensores & 5 \\
 \hline
 Tipos de Sensores & 5 (INTRUSAO, MOVIMENTO, FOGO, GAS, INUNDACAO) \\
 \hline
-Estrutura de Dados & queue FIFO para eventos \\
+Estrutura de Dados & queue FIFO \\
 \hline
 \end{tabular}
-\caption{Especificacoes tecnicas do sistema}
-\end{table}
 
 \vfill
 
@@ -1504,7 +882,7 @@ Estrutura de Dados & queue FIFO para eventos \\
 \par\bigskip
 {\Large\bfseries Sistema de Alarme Domestico}\par
 {\large Manual de Utilizacao e Documentacao Tecnica}\par\bigskip
-Copyright \copyright\ 2026 - Ana Raquel\par
+Copyright 2026 - Ana Raquel\par
 \end{center}
 
 \end{document}
