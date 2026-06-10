@@ -82,6 +82,14 @@ void ComandoAlarme::resetTentativas() {
     tentativas = 0;
 }
 
+bool ComandoAlarme::pedirSenhaParaDesarmar() {
+    std::string inputSenha;
+    std::cout << "[ALARME] Introduza a senha para desarmar: ";
+    std::cin >> inputSenha;
+
+    return desarmar(inputSenha);
+}
+
 void ComandoAlarme::liga(const std::string& senha) {
     armar(senha);
 }

@@ -97,6 +97,14 @@ public:
     void resetTentativas();
 
     /**
+     * @brief Pede a senha ao utilizador para desarmar o sistema
+     * Lê a senha do stdin, verifica se correta e processa o resultado
+     * @return true se desarmou com sucesso, false caso contrário
+     * @note Se 3 tentativas erradas, ativa a campainha
+     */
+    bool pedirSenhaParaDesarmar();
+
+    /**
      * @brief Liga o sistema (alias para armar)
      * @param senha Senha para ligar o sistema
      */
