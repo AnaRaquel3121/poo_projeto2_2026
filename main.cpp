@@ -165,7 +165,7 @@ int main()
                 s->ativar();
                 if (comando.getEstado() && !comando.getEstadoCampainha())
                 {
-                    for (int i = 0; i < 3; i++)
+                    for (int i = 0; i < MAX_TENTATIVAS; i++)
                     {
                         if (comando.pedirSenhaParaDesarmar())
                         {

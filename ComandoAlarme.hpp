@@ -26,16 +26,17 @@
  *
  * @note A senha por omissão é "0000"
  */
-class ComandoAlarme {
+class ComandoAlarme
+{
 private:
-    bool estado;                 /**< Estado do sistema: true=armado, false=desarmado */
-    std::string senha;           /**< Senha de 4 dígitos do sistema */
-    std::string mensagem;        /**< Mensagem descritiva do último evento */
-    bool estadoCampainha;        /**< Estado da campainha: true=ativa, false=desativada */
-    int tentativas;             /**< Número de tentativas de senha falhadas */
-    const int MAX_TENTATIVAS;    /**< Máximo de tentativas permitidas (3) */
+    bool estado;          /**< Estado do sistema: true=armado, false=desarmado */
+    std::string senha;    /**< Senha de 4 dígitos do sistema */
+    std::string mensagem; /**< Mensagem descritiva do último evento */
+    bool estadoCampainha; /**< Estado da campainha: true=ativa, false=desativada */
+    int tentativas;       /**< Número de tentativas de senha falhadas */
 
 public:
+    const int MAX_TENTATIVAS; /**< Máximo de tentativas permitidas (3) */
     /**
      * @brief Construtor por omissão
      * Inicializa o sistema com senha "0000" e estado desarmado
@@ -46,14 +47,14 @@ public:
      * @brief Construtor com senha inicial
      * @param senhaInicial Senha de 4 dígitos para inicializar o sistema
      */
-    ComandoAlarme(const std::string& senhaInicial);
+    ComandoAlarme(const std::string &senhaInicial);
 
     /**
      * @brief Arma o sistema de alarme
      * @param senha Senha para armar o sistema
      * @note Apenas arma se a senha for correta
      */
-    void armar(const std::string& senha);
+    void armar(const std::string &senha);
 
     /**
      * @brief Desarma o sistema de alarme
@@ -61,7 +62,7 @@ public:
      * @return true se desarmou com sucesso, false caso contrário
      * @note Se a senha estiver errada 3 vezes, ativa a campainha
      */
-    bool desarmar(const std::string& senha);
+    bool desarmar(const std::string &senha);
 
     /**
      * @brief Altera a senha do sistema
@@ -70,7 +71,7 @@ public:
      * @return true se alterou com sucesso, false caso contrário
      * @note A nova senha deve ter exatamente 4 dígitos
      */
-    bool mudarSenha(const std::string& senhaAntiga, const std::string& senhaNova);
+    bool mudarSenha(const std::string &senhaAntiga, const std::string &senhaNova);
 
     /**
      * @brief Processa a ativação de um sensor
@@ -78,7 +79,7 @@ public:
      * @param divisao Divisão onde o sensor foi ativado
      * @note Exibe mensagem de alerta e informa sobre tentativas
      */
-    void processarSensor(const std::string& tipo, const std::string& divisao);
+    void processarSensor(const std::string &tipo, const std::string &divisao);
 
     /**
      * @brief Ativa a campainha de alarme
@@ -108,13 +109,13 @@ public:
      * @brief Liga o sistema (alias para armar)
      * @param senha Senha para ligar o sistema
      */
-    void liga(const std::string& senha);
+    void liga(const std::string &senha);
 
     /**
      * @brief Desliga o sistema (alias para desarmar)
      * @param senha Senha para desligar o sistema
      */
-    void desliga(const std::string& senha);
+    void desliga(const std::string &senha);
 
     // ==================== Getters ====================
 
