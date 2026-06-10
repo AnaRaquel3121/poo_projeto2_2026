@@ -101,11 +101,6 @@ bool Simulacao::parseEvento(const std::string& linha, Evento& evento) {
         evento.tipo = "ATIVAR";
         evento.param2 = "";
         return true;
-    } else if (tipo == "DESATIVAR") {
-        iss >> evento.param1;
-        evento.tipo = "DESATIVAR";
-        evento.param2 = "";
-        return true;
     }
 
     return false;
@@ -135,15 +130,6 @@ void Simulacao::processarEvento(const Evento& evento) {
         for (Sensor* sensor : sensores) {
             if (sensor->getId() == idSensor) {
                 sensor->ativar();
-                break;
-            }
-        }
-    }
-    else if (evento.tipo == "DESATIVAR") {
-        int idSensor = std::stoi(evento.param1);
-        for (Sensor* sensor : sensores) {
-            if (sensor->getId() == idSensor) {
-                sensor->desativar();
                 break;
             }
         }

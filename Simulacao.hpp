@@ -69,7 +69,6 @@ private:
      * - DESARMAR <senha>
      * - MUDARSENHA <senha_antiga> <senha_nova>
      * - ATIVAR <id_sensor>
-     * - DESATIVAR <id_sensor>
      */
     bool parseEvento(const std::string& linha, Evento& evento);
 
