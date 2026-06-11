@@ -512,22 +512,58 @@ DESARMAR 0000
 % ========== SECAO 7 ==========
 \section{Conclusao}
 
-O projeto implementa os conceitos fundamentais de POO:
+O projeto permite aplicar conceitos fundamentais de Programacao Orientada aos Objetos em C++, nomeadamente encapsulamento, composicao, associacao entre classes e utilizacao de estruturas da STL, como queue e vector.
+
+\subsection{Conceitos POO Aplicados}
 
 \begin{itemize}
-    \item \textbf{Encapsulamento}: Atributos privados
-    \item \textbf{Composicao}: Simulacao contem objetos
-    \item \textbf{Associacao}: Sensor conhece ComandoAlarme
-    \item \textbf{STL}: queue, vector
+    \item \textbf{Encapsulamento}: Os atributos de cada classe sao declarados como privados, garantindo o controlo de acesso e a integridade dos dados. A interacao com os objetos e feita exclusivamente atraves dos metodos publicos.
+    
+    \item \textbf{Composicao}: A classe \texttt{Simulacao} e composta por objetos das classes \texttt{ComandoAlarme} e \texttt{Sensor}, estabelecendo uma relacao "tem-um" onde os componentes existem como parte integrante da classe container.
+    
+    \item \textbf{Associacao}: Os objetos \texttt{Sensor} mantem uma referencia (ponteiro) para o \texttt{ComandoAlarme} ao qual estao associados, permitindo a comunicacao entre objetos de classes diferentes e a notificacao de eventos.
+    
+    \item \textbf{Gestao de Memoria}: Utilizacao adequada de ponteiros para gerir as associacoes entre objetos, garantindo o ciclo de vida correto dos mesmos.
+    
+    \item \textbf{STL (Standard Template Library)}: Implementacao pratica dos contentores \texttt{std::queue} (fila FIFO) e \texttt{std::vector} (colecao dinamica), demonstrando a capacidade de utilizar bibliotecas padrao da linguagem.
 \end{itemize}
 
-\subsection{Tecnologias}
+\subsection{Resultados Alcancados}
+
+O sistema desenvolvido cumpre todos os requisitos funcionais definidos no enunciado do projeto:
+
+\begin{itemize}
+    \item Gestao de estados armado/desarmado com validacao por senha
+    \item Autenticacao por senha de 4 digitos com possibilidade de alteracao
+    \item Controlo de campainha com limite de 3 tentativas
+    \item Suporte a 5 tipos de sensores em 5 divisoes distintas
+    \item Processamento de eventos em fila FIFO
+    \item Interface de menu interativo com 7 opcoes
+    \item Documentacao completa em codigo (Javadoc) e manual
+\end{itemize}
+
+\subsection{Modularidade e Escalabilidade}
+
+A organizacao em classes torna o sistema mais modular e facilita futuras alteracoes, como:
+\begin{itemize}
+    \item Adicao de novos sensores ou novas divisoes
+    \item Implementacao de novos modos de funcionamento
+    \item Extensao dos tipos de eventos suportados
+    \item Adicao de persistencia de dados em ficheiros
+    \item Desenvolvimento de interface grafica (GUI)
+\end{itemize}
+
+\subsection{Tecnologias Utilizadas}
 
 \begin{center}
 \begin{tabular}{l l}
 Linguagem: & C++11 \\
-Compilador: & g++ \\
-Ferramentas: & Git, GitHub, LaTeX \\
+Compilador: & g++ (GNU Compiler Collection) \\
+Sistema Operativo: & Linux \\
+Controlo de Versoes: & Git \\
+Repositorio Remoto: & GitHub \\
+Documentacao: & LaTeX (Overleaf) \\
+Diagramas: & PlantUML \\
 \end{tabular}
 \end{center}
 
