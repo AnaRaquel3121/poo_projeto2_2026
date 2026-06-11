@@ -169,7 +169,6 @@ int main()
                     {
                         if (comando.pedirSenhaParaDesarmar())
                         {
-                            std::cout << "[ALARME] Sistema desarmado com sucesso" << std::endl;
                             desativarTodosSensores(&simulacao);
                             break;
                         }
