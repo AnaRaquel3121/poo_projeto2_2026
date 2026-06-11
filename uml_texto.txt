@@ -1,105 +1,71 @@
-=============================================================
-            DIAGRAMA UML - SISTEMA DE ALARME DOMESTICO
-=============================================================
++----------------------------------------------------------+
+|                     CLASSE Simulacao                     |
+|                                                          |
+|  - eventos: queue<Evento>                                 |
+|  - sensores: vector<Sensor*>                             |
+|  - comandoAlarme: ComandoAlarme*                          |
++----------------------------------------------------------+
+|  + Simulacao()                                           |
+|  + ~Simulacao()                                          |
+|  + adicionarSensor(sensor: Sensor*) : void               |
+|  + setComandoAlarme(comando: ComandoAlarme*) : void      |
+|  + iniciar(ficheiroEventos: string) : bool                 |
+|  + executar() : void                                     |
+|  + obtemSensor(id: int) : Sensor*                         |
++----------------------------------------------------------+
+              | comp 1..1 |             | comp 1..n
+              v           v             v
+    +-------------------+  +-----------------------------------+
+    |   ComandoAlarme    |  |         CLASSE Sensor             |
+    |                    |  |                                   |
+    |  - estado: bool    |  |  - id: int                        |
+    |  - senha: string   |  |  - divisao: string                |
+    |  - mensagem: string|  |  - estado: bool                   |
+    |  - estadoCampainha |  |  - tipo: TipoSensor               |
+    |  - tentativas: int |  |  - comando: ComandoAlarme*        |
+    |                    |  |                                   |
+    +-------------------+  +-----------------------------------+
+    |  + MAX_TENTATIVAS  |  |  + Sensor(id, div, tipo)          |
+    |  + ComandoAlarme() |  |  + setComando(cmd) : void         |
+    |  + armar(senha)    |  |  + ativar() : void                |
+    |  + desarmar(senha) |  |  + desativar() : void             |
+    |  + mudarSenha()    |  |  + notificar() : void             |
+    |  + ativarCampainha |  |  + fixaEstado(estado) : void      |
+    |  + pedirSenha()    |  |  + getId() : int                  |
+    |  + liga()          |  |  + getDivisao() : string          |
+    |  + desliga()       |  |  + getEstado() : bool               |
+    |  + getEstado()     |  |  + getTipo() : TipoSensor         |
+    |  + getCampainha()  |  |  + getTipoString() : string       |
+    |  + getMensagem()   |  +-----------------------------------+
+    |  + getTentativas() |  
+    +-------------------+  
+              ^                    
+              | assoc n..1         
+              |                    
+              +--------------------+
 
-CLASSE ComandoAlarme
---------------------
-+------------------+
-|  ComandoAlarme   |
-+------------------+
-| - estado : bool  |
-| - senha : string|
-| - mensagem      |
-| - estadoCampainha|
-| - tentativas:int|
-| - MAX_TENTATIVAS |
-+------------------+
-| + ComandoAlarme()|
-| + armar(string) |
-| + desarmar(bool)|
-| + mudarSenha()  |
-| + processarSens. |
-| + ativarCampainha|
-| + desativarCamp. |
-| + resetTentativas|
-| + liga(string)  |
-| + desliga(string)|
-| + getEstado()   |
-| + getCampainha() |
-| + getSenha()     |
-| + getMensagem()  |
-+------------------+
++----------------------------------------------------------+
+|                    STRUCT Evento                         |
+|                                                          |
+|  + tipo: string                                          |
+|  + param1: string                                        |
+|  + param2: string                                        |
++----------------------------------------------------------+
 
-        1..n
-         ▼
-CLASSE Sensor
---------------------
-+---------------+
-|    Sensor     |
-+---------------+
-| - id : int    |
-| - divisao     |
-| - estado      |
-| - tipo        |
-| - comando*    |
-+---------------+
-| + Sensor()    |
-| + setComando()|
-| + ativar()    |
-| + desativar() |
-| + notificar() |
-| + fixaEstado()|
-| + getId()     |
-| + getDivisao()|
-| + getEstado() |
-| + getTipo()   |
-+---------------+
++----------------------------------------------------------+
+|                    ENUM TipoSensor                       |
+|                                                          |
+|  INTRUSAO                                                |
+|  MOVIMENTO                                               |
+|  FOGO                                                    |
+|  GAS                                                     |
+|  INUNDACAO                                               |
++----------------------------------------------------------+
 
-CLASSE Simulacao
---------------------
-+-------------------+
-|     Simulacao     |
-+-------------------+
-| - eventos: queue  |
-| - sensores: vector|
-| - comandoAlarme*  |
-+-------------------+
-| + Simulacao()     |
-| + ~Simulacao()    |
-| + adicionarSens()|
-| + setComandoAlarme|
-| + iniciar()      |
-| + executar()      |
-| + obtemSensor()   |
-+-------------------+
-
-
-RELAÇÕES:
-=========
-
-ComandoAlarme ──────────────► Sensor (1..n)
-    │                               ▲
-    │                               │
-    │     Simulacao                 │
-    └──────────────────────────────┘
-         (agregação de ambos)
-
-
-NOTAS:
-======
-• Composição: Simulacao contém ComandoAlarme e Sensors
-• Associação: Sensor conhece o seu ComandoAlarme (n..1)
-• Agregação: Sensores existem independentemente da simulação
-
-
-ENUMS:
-======
-
-TipoSensor
-+-----------+
-| INTRUSAO  |
-| MOVIMENTO |
-| FOGO      |
-| GAS       |
-| INUNDACAO |
-+-----------+
++----------------------------------------------------------+
+|                    RELACOES                               |
+|                                                          |
+|  Simulacao -[comp 1..1]-> ComandoAlarme                  |
+|  Simulacao -[comp 1..n]-> Sensor                         |
+|  Sensor -[assoc n..1]-> ComandoAlarme                   |
++----------------------------------------------------------+
