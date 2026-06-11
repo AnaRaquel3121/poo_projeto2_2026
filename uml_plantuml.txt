@@ -8,8 +8,8 @@ class ComandoAlarme {
     - mensagem : string
     - estadoCampainha : bool
     - tentativas : int
-    - MAX_TENTATIVAS : const int
     --
+    + MAX_TENTATIVAS : const int
     + ComandoAlarme()
     + ComandoAlarme(senhaInicial : string)
     + armar(senha : string) : void
@@ -19,6 +19,7 @@ class ComandoAlarme {
     + ativarCampainha() : void
     + desativarCampainha() : void
     + resetTentativas() : void
+    + pedirSenhaParaDesarmar() : bool
     + liga(senha : string) : void
     + desliga(senha : string) : void
     + getEstado() : bool
