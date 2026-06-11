@@ -34,7 +34,7 @@ bool ComandoAlarme::desarmar(const std::string& senha) {
         if (tentativas >= MAX_TENTATIVAS) {
             ativarCampainha();
         }
-        mensagem = "Senha incorreta. Tentativas: " + std::to_string(tentativas);
+        mensagem = "Senha incorreta. Tentativas restantes: " + std::to_string(MAX_TENTATIVAS - tentativas);
         std::cout << "[ALARME] " << mensagem << std::endl;
         return false;
     }
